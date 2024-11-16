@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'layout_scaffold.dart';
+import 'ui_components/mainmenu_button.dart';
 
 void main() {
   runApp(const Application());
@@ -10,30 +12,51 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      //The title for the app, displayed when ran in Browser
-      title: 'Flexinote',
-      //First display
-      home: 
-        MainMenuHolder()
-    );
+        //The title for the app, displayed when ran in Browser
+        title: 'Flexinote',
+        //First display
+        debugShowCheckedModeBanner: false,
+        home: MainMenuHolder());
   }
 }
 
-class MainMenuHolder extends StatefulWidget{
+class MainMenuHolder extends StatefulWidget {
   const MainMenuHolder({super.key});
 
   @override
   State<MainMenuHolder> createState() => _MainMenuContent();
 }
 
-class _MainMenuContent extends State<MainMenuHolder>{
+class _MainMenuContent extends State<MainMenuHolder> {
   //Just to remove the error marker
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("FlexiNote"),
+        backgroundColor: const Color.fromRGBO(69, 60, 103, 1),
+      ),
+      body: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          MenuButton(
+            text: "Gyatt Zhu yuan 100cm",
+            onPressed: () {
+              //action
+            },
+          ),
+          MenuButton(
+            text: "Hoshino Cunny banget",
+            color: Colors.pink,
+            onPressed: () {
+              //action
+            },
+          ),
+        ],
+      )),
+    );
   }
-  
 }
 
 // class MyApp extends StatelessWidget {
