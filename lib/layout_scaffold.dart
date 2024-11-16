@@ -1,3 +1,4 @@
+import 'package:flexinote/ui_components/scaffold_buttons.dart';
 import 'package:flutter/material.dart';
 
 class LayoutScaffold extends StatelessWidget{
@@ -19,10 +20,10 @@ class LayoutScaffold extends StatelessWidget{
       body: SafeArea(
         child: body
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color.fromRGBO(69, 60, 103, 1),
-        items: const<BottomNavigationBarItem>[]
-        )
+      bottomNavigationBar: BottomAppBar(
+              color:  Color.fromRGBO(69, 60, 103, 1),
+              child: HomeButton()
+            ),
     );
   }
 }

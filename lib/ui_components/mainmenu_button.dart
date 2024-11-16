@@ -23,7 +23,7 @@ class MenuButton extends StatelessWidget {
         width: double.infinity, // Button width
         decoration: BoxDecoration(
           color: const Color.fromRGBO(109, 103, 228, 1), // Default button color
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(25), //Smooth edges
         ),
         child: Center(
           child: Text(

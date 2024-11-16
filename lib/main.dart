@@ -28,34 +28,58 @@ class MainMenuHolder extends StatefulWidget {
 }
 
 class _MainMenuContent extends State<MainMenuHolder> {
-  //Just to remove the error marker
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("FlexiNote"),
-        backgroundColor: const Color.fromRGBO(69, 60, 103, 1),
-      ),
-      body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          MenuButton(
-            text: "Gyatt Zhu yuan 100cm",
-            onPressed: () {
-              //action
-            },
-          ),
-          MenuButton(
-            text: "Hoshino Cunny banget",
-            color: Colors.pink,
-            onPressed: () {
-              //action
-            },
-          ),
-        ],
-      )),
+
+    return LayoutScaffold(
+        body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MenuButton(
+              text: "Gyatt Zhu yuan 100cm",
+              onPressed: () {
+                //action
+              },
+            ),
+            MenuButton(
+              text: "Hoshino Cunny banget",
+              onPressed: () {
+                //action
+              },
+            ),
+          ],
+        )
+      )
     );
+
+    //
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     title: const Text("FlexiNote"),
+    //     backgroundColor: const Color.fromRGBO(69, 60, 103, 1),
+    //   ),
+    //   body: Center(
+    //       child: Column(
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //       children: [
+    //         MenuButton(
+    //           text: "Gyatt Zhu yuan 100cm",
+    //           onPressed: () {
+    //             //action
+    //           },
+    //         ),
+    //         MenuButton(
+    //           text: "Hoshino Cunny banget",
+    //           color: Colors.pink,
+    //           onPressed: () {
+    //             //action
+    //           },
+    //         ),
+    //       ],
+    //     )
+    //   ),
+    // );    
   }
 }
 
