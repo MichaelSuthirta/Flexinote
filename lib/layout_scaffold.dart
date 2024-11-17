@@ -28,7 +28,9 @@ class LayoutScaffold extends StatelessWidget {
       body: SafeArea(child: body //Screen content
           ),
       floatingActionButton: HomeButton(onPress: () {
-        Navigator.pushNamed(context, '/');
+        if (ModalRoute.of(context)?.settings.name != '/') {
+          Navigator.pushNamed(context, '/');
+        }
       }),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.centerDocked, //Home button position
