@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class MenuButton extends StatelessWidget {
-  final String text;
+  final String text; //Button text
   final VoidCallback? onPressed;
   final Color color;
+  final String iconPath; //Button icon directory
 
   const MenuButton({
+    required this.iconPath,
     required this.text,
     this.onPressed,
     super.key,
@@ -19,22 +21,30 @@ class MenuButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(25), // Smooth edges for ripple
       splashColor: Colors.white.withOpacity(0.2), // Ripple effect color
       child: Ink(
-        height: 60, // Button height
+        height: 250, // Button height
         width: double.infinity, // Button width
         decoration: BoxDecoration(
           color: const Color.fromRGBO(109, 103, 228, 1), // Default button color
           borderRadius: BorderRadius.circular(25), //Smooth edges
         ),
-        child: Center(
-          child: Text(
-            text,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+        child:Row(
+          children:[
+            Container
+            (
+              padding: const EdgeInsets.all(20), //Icon spacing
+              child:Image(image: AssetImage(iconPath)) //Icon
             ),
-          ),
-        ),
+            Text(
+              text,
+              style: const TextStyle(
+                fontFamily: 'Odor Mean Chey',
+                color: Colors.white,
+                fontSize: 35,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ]
+        )
       ),
     );
   }

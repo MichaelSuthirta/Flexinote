@@ -14,16 +14,26 @@ class LayoutScaffold extends StatelessWidget{
     return Scaffold(
       //The top bar
       appBar: AppBar(
+        toolbarHeight: 70, //AppBar size
         backgroundColor: const Color.fromRGBO(69, 60, 103, 1),
+        actions: [
+          ProfileButton(
+            onPress: (){},
+          )
+        ],
       ),
       //The content area
       body: SafeArea(
-        child: body
+        child: body //Screen content
       ),
-      bottomNavigationBar: BottomAppBar(
-              color:  Color.fromRGBO(69, 60, 103, 1),
-              child: HomeButton()
-            ),
+      floatingActionButton: HomeButton(
+        onPress: (){}
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked, //Home button position
+      bottomNavigationBar: const BottomAppBar(
+        color:  Color.fromRGBO(69, 60, 103, 1),
+        shape: CircularNotchedRectangle(),
+      ),
     );
   }
 }

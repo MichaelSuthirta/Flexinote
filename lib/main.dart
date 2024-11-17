@@ -36,17 +36,31 @@ class _MainMenuContent extends State<MainMenuHolder> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            MenuButton(
-              text: "Gyatt Zhu yuan 100cm",
-              onPressed: () {
-                //action
-              },
+            Container
+            (
+              //Gap between screen edge, adjacent button and this button
+              padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
+              //Content (button)
+              child: MenuButton(
+                iconPath: "lib/ui_components/icons/notes_icon.png", //Button icon
+                text: "Catatan", //Button text
+                onPressed: () {
+                  //action
+                },
+              )
             ),
-            MenuButton(
-              text: "Hoshino Cunny banget",
-              onPressed: () {
-                //action
-              },
+            Container
+            (
+              //Gap between screen edge, adjacent button and this button
+              padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
+              //Content (button)
+              child:MenuButton(
+                iconPath: "lib/ui_components/icons/book_icon.png", //Button icon
+                text: "e-Book", //Button text
+                onPressed: () {
+                  //action
+                },
+              )
             ),
           ],
         )
