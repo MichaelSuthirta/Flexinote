@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'layout_scaffold.dart';
-import 'ui_components/mainmenu_button.dart';
+import 'routing.dart';
+// import 'main_menu.dart';
 
 void main() {
   runApp(const Application());
@@ -11,61 +11,16 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        //The title for the app, displayed when ran in Browser
-        title: 'Flexinote',
-        //First display
-        debugShowCheckedModeBanner: false,
-        home: MainMenuHolder());
+    return MaterialApp(
+      //The title for the app, displayed when ran in Browser
+      title: 'Flexinote',
+      //First display
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/', //The initial page is the main menu page
+      routes: Routes.getRoute(),
+    );
   }
 }
-
-class MainMenuHolder extends StatefulWidget {
-  const MainMenuHolder({super.key});
-
-  @override
-  State<MainMenuHolder> createState() => _MainMenuContent();
-}
-
-class _MainMenuContent extends State<MainMenuHolder> {
-  @override
-  Widget build(BuildContext context) {
-
-    return LayoutScaffold(
-        body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container
-            (
-              //Gap between screen edge, adjacent button and this button
-              padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
-              //Content (button)
-              child: MenuButton(
-                iconPath: "lib/ui_components/icons/notes_icon.png", //Button icon
-                text: "Catatan", //Button text
-                onPressed: () {
-                  //action
-                },
-              )
-            ),
-            Container
-            (
-              //Gap between screen edge, adjacent button and this button
-              padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
-              //Content (button)
-              child:MenuButton(
-                iconPath: "lib/ui_components/icons/book_icon.png", //Button icon
-                text: "e-Book", //Button text
-                onPressed: () {
-                  //action
-                },
-              )
-            ),
-          ],
-        )
-      )
-    );
 
     //
     // return Scaffold(
@@ -93,9 +48,7 @@ class _MainMenuContent extends State<MainMenuHolder> {
     //       ],
     //     )
     //   ),
-    // );    
-  }
-}
+    // );
 
 // class MyApp extends StatelessWidget {
 //   const MyApp({super.key});

@@ -15,6 +15,8 @@ class LayoutScaffold extends StatelessWidget{
       //The top bar
       appBar: AppBar(
         toolbarHeight: 70, //AppBar size
+        elevation: 20,
+        shadowColor: Colors.black,
         backgroundColor: const Color.fromRGBO(69, 60, 103, 1),
         actions: [
           ProfileButton(
