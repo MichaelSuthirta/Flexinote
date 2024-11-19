@@ -12,7 +12,7 @@ class _EbookMainPageContent extends State<EbookMainPage>{
   @override
   Widget build(BuildContext context){
     return const LayoutScaffold(
-      body: Text("Test", style: const TextStyle(fontSize: 30))
+      body: Text("Test", style: TextStyle(fontSize: 30))
     );
   }
 }
