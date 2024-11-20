@@ -15,7 +15,7 @@ class LayoutScaffold extends StatelessWidget {
       //The top bar
       appBar: AppBar(
         toolbarHeight: 70, //AppBar size
-        elevation: 20,
+        elevation: 20, //To give shadow effects
         shadowColor: Colors.black,
         backgroundColor: const Color.fromRGBO(69, 60, 103, 1),
         actions: [
@@ -24,6 +24,7 @@ class LayoutScaffold extends StatelessWidget {
           )
         ],
       ),
+      resizeToAvoidBottomInset: false, //To keep the home button's position down
       //The content area
       body: SafeArea(child: body //Screen content
           ),
