@@ -16,37 +16,41 @@ class _MainMenuContent extends State<MainMenuHolder> {
     return LayoutScaffold(
         body: Center(
             child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-            //Gap between screen edge, adjacent button and this button
-            padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
-            //Content (button)
-            child: MenuButton(
-              iconPath: "lib/ui_components/icons/notes_icon.png",
-              //Button icon
-              text: "Catatan",
-              //Button text
-              onPressed: () {
-                //action
-                Navigator.pushNamed(context, '/catatan/main');
-              },
-            )),
-        Container(
-            //Gap between screen edge, adjacent button and this button
-            padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
-            //Content (button)
-            child: MenuButton(
-              iconPath: "lib/ui_components/icons/book_icon.png",
-              //Button icon
-              text: "e-Book",
-              //Button text
-              onPressed: () {
-                //Directs the page to e-book main page
-                Navigator.pushNamed(context, '/ebook/main');
-              },
-            )),
-      ],
-    )));
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  //Gap between screen edge, adjacent button and this button
+                  padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
+                  //Content (button)
+                  child: MenuButton(
+                    iconPath: "lib/ui_components/icons/notes_icon.png",
+                    //Button icon
+                    text: "Catatan",
+                    //Button text
+                    onPressed: () {
+                      //action
+                      Navigator.pushNamed(context, '/catatan/main');
+                    },
+                  )
+                ),
+                Container(
+                  //Gap between screen edge, adjacent button and this button
+                  padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
+                  //Content (button)
+                  child: MenuButton(
+                    iconPath: "lib/ui_components/icons/book_icon.png",
+                    //Button icon
+                    text: "e-Book",
+                    //Button text
+                    onPressed: () {
+                      //Directs the page to e-book main page
+                      Navigator.pushNamed(context, '/ebook/main');
+                    },
+                  )
+                ),
+              ],
+            )
+        )
+    );
   }
 }
