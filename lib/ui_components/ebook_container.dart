@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 class EbookContainer extends StatelessWidget{
   //For display
-  final String title, author;
+  final String title, author, path;
   final String? src; // Source for cover
-  // final Image? cover;
-
+  final ImageProvider? cover;
 
   //For button press
   final VoidCallback? onPress;
@@ -14,8 +13,9 @@ class EbookContainer extends StatelessWidget{
     super.key,
     required this.title,
     required this.author,
+    required this.path,
     this.src, // For path string
-    // this.cover, // For image
+    this.cover, // For image
     this.onPress,
   });
 
@@ -25,6 +25,8 @@ class EbookContainer extends StatelessWidget{
     //Create a string for image source. If src is null, uses default image.
     // ?? = if null
     String coverSource = src ?? "lib/ui_components/images/image_placeholder.png";
+    //If cover image is null, uses the String path.
+    ImageProvider coverImage = cover ?? AssetImage(coverSource);
 
     //Return the e-book box
     return InkWell(
@@ -49,7 +51,7 @@ class EbookContainer extends StatelessWidget{
                     width: double.infinity,
                     height: 170,
                     child: Image(
-                      image: AssetImage(coverSource),
+                      image: coverImage,
                       fit: BoxFit.fitWidth, //Crops the image to the box width
                     ),
                   ),

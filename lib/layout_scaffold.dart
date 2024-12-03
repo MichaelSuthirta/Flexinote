@@ -26,12 +26,15 @@ class LayoutScaffold extends StatelessWidget {
       ),
       resizeToAvoidBottomInset: false, //To keep the home button's position down
       //The content area
-      body: SafeArea(child: body //Screen content
+      body: SafeArea(
+          child: body //Screen content
           ),
-      floatingActionButton: HomeButton(onPress: () {
+      floatingActionButton: HomeButton(
+          onPress: () {
         //Returns to homepage
         Navigator.popUntil(context, ModalRoute.withName('/'));
-      }),
+      }
+      ),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.centerDocked, //Home button position
       bottomNavigationBar: const BottomAppBar(
