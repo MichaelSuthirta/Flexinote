@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../ui_components/ebook_container.dart';
 import 'ebook_list_fetcher.dart';
 import 'ebook.dart';
+import 'ebook_viewer.dart';
 import 'dart:io';
 
 class EbookScroll extends StatefulWidget{
@@ -26,7 +27,7 @@ class _EbookScrollContent extends State<EbookScroll>{
     //     padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
     //     child: EbookContainer(
     //       onPress: (){},
-    //       title: "The Past, Present, and The Eternal Show: Three bitches of Penacony",
+    //       title: "The Past, Present, and The Future: How Our Experiences Shape Our Life",
     //       author: "test",
     //     )
     // );
@@ -49,10 +50,28 @@ class _EbookScrollContent extends State<EbookScroll>{
               itemBuilder: (context, index){
                 return Padding(
                   padding: const EdgeInsets.fromLTRB(25, 12.5, 25, 12.5),
-                  child: EbookContainer(
-                  title: eBookList[index].getTitle(),
-                  author: eBookList[index].getAuthor(),
-                  path: eBookList[index].getPath(),
+                  child: FutureBuilder<ImageProvider?>(
+                    future: getCover(eBookList[index].getPath()),
+                    builder: (context, coverSnapshot) {
+                      if(coverSnapshot.connectionState == ConnectionState.waiting || coverSnapshot.hasError){
+                        if(coverSnapshot.hasError){
+                          print("Error: {$coverSnapshot.error}");
+                        }
+                        return EbookContainer(
+                            title: eBookList[index].getTitle(),
+                            author: eBookList[index].getAuthor(),
+                            path: eBookList[index].getPath(),
+                            onPress: () {}
+                        );
+                      }
+                      return EbookContainer(
+                          title: eBookList[index].getTitle(),
+                          author: eBookList[index].getAuthor(),
+                          path: eBookList[index].getPath(),
+                          cover: coverSnapshot.data,
+                          onPress: () {}
+                      );
+                    }
                   )
                 );
               },

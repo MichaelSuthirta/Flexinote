@@ -45,8 +45,8 @@ class EbookMainPage extends StatelessWidget{
 
               //Content
               const Expanded (
-                    child: EbookScroll()
-              )
+                  child: EbookScroll()
+              ),
             ]
         )
     );
