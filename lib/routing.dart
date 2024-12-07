@@ -1,5 +1,6 @@
 import 'package:flexinote/catatan_pages/catatan_main_page.dart';
 import 'package:flexinote/ebook_pages/ebook_main_page.dart';
+import 'package:flexinote/ebook_pages/ebook_viewer.dart';
 import 'package:flutter/material.dart';
 import 'main_menu.dart';
 
@@ -9,7 +10,9 @@ class Routes {
     return {
       '/': (context) => const MainMenuHolder(),
       '/ebook/main': (context) => const EbookMainPage(),
-      '/catatan/main': (context) => const CatatanMainPage()
+      '/ebook/book-content': (context) => BookViewer(path:
+      ModalRoute.of(context)!.settings.arguments as String), //Passes the argument
+      '/catatan/main': (context) => const CatatanMainPage(),
     };
   }
 }
