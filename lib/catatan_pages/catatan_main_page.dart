@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../layout_scaffold.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CatatanMainPage extends StatefulWidget {
   const CatatanMainPage({super.key});
@@ -9,42 +10,81 @@ class CatatanMainPage extends StatefulWidget {
 }
 
 class _CatatanMainPageContent extends State<CatatanMainPage> {
-  String _searchQuery = "";
+  final List<String> dropdownOptions = ['Date modified', 'Date Created'];
+  late String dropdownValue = dropdownOptions.first;
 
   @override
   Widget build(BuildContext context) {
-    return LayoutScaffold(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('FlexiNotes'),
+        actions: [
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Aksi tombol di sini
+        },
+        child: Icon(FontAwesomeIcons.plus), // Ikon dari FontAwesome
+      ),
+
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: "Search",
-                prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-              ),
-              onChanged: (value) {
-                setState(() {
-                  _searchQuery = value;
-                });
-              },
+          TextField(
+            decoration: InputDecoration(labelText: 'Search Notes.....',
+              prefixIcon: Icon(FontAwesomeIcons.magnifyingGlass),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              _searchQuery.isEmpty ? "" : "Search result: $_searchQuery",
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(FontAwesomeIcons.arrowDown),
+              ),
+              DropdownButton(
+                value: dropdownValue,
+                items: dropdownOptions
+                    .map(
+                      (e) => DropdownMenuItem(
+                      value: e,
+                      child: Text(e)
+                  ),
+                )
+                    .toList(),
+                onChanged: (newValue){
+                  setState(() {
+                    dropdownValue = newValue!;
+                  });
+                },
+              ),
+              Spacer(),
+              IconButton(onPressed: () {}, icon: Icon(FontAwesomeIcons.bars),
+              ),
+            ],
           ),
           Expanded(
-            child: Center(
-              child: Text(_searchQuery.isEmpty ? "ini main page catatan" : "",
-                style: const TextStyle(fontSize: 30),
+            child: GridView.builder(
+              itemCount: 15,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 4,
+                mainAxisSpacing: 4,
               ),
+              itemBuilder: (context, int index) {
+                return Container(child: Column(children: [Text('Judul notes'),
+                  Row(children: [Container(child: Text('OOPsesi11'),
+                  ),
+                  ],
+                  ),
+                  Text('Multithreading programming'),
+                  Row(children:[Text('07 Dec, 2024'),
+                    Icon(FontAwesomeIcons.trash),
+                  ],
+                  ),
+                ],
+                ),
+                );
+              },
             ),
           ),
         ],
