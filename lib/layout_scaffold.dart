@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 class LayoutScaffold extends StatelessWidget {
   //To store the active content/screen
   final Widget body;
-
+  final PreferredSizeWidget? appBar;
   //Constructor
-  const LayoutScaffold({super.key, required this.body});
+  const LayoutScaffold({super.key, required this.body,this.appBar});
 
   @override
   //To create the layout
