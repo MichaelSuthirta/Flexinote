@@ -21,7 +21,7 @@ class Application extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/ebook/main': (BuildContext context) => const EbookMainPage(),
         '/ebook/book-content': (BuildContext context) => BookViewer(path:
-        ModalRoute.of(context)!.settings.arguments as String), //Passes the argument
+    ModalRoute.of(context)!.settings.arguments as String), //Passes the argument
         '/catatan/main': (BuildContext context) => const CatatanMainPage(),
       },
       theme: ThemeData(

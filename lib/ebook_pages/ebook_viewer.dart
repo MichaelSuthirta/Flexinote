@@ -7,13 +7,8 @@ import 'dart:io';
 
 /// Creates a temporary file to store the content of the actual files
 Future<String> loadTempFile(String filePath) async{
-  final data = await rootBundle.load(filePath);
-
   //Creates a temporary file, where the path is 'temporaryDirectory/pdfName'.
   final tempFile = File('${(await getTemporaryDirectory()).path}/${filePath.split('/').last}');
-  //Writes the pdf byteData into the file
-  await tempFile.writeAsBytes(data.buffer.asUint8List());
-
   //Returns the path
   return tempFile.path;
 }
@@ -63,7 +58,7 @@ class _BookViewerState extends State<BookViewer>{
   void setPath () async{
     String bookPath = await loadTempFile(widget.path);
     setState((){
-      viewer = PdfControllerPinch(document: PdfDocument.openFile(bookPath));
+      viewer = PdfControllerPinch(document: PdfDocument.openFile(bookPath)); //Opens the file path
     });
     print(widget.path);
   }
@@ -88,6 +83,7 @@ class _BookViewerState extends State<BookViewer>{
 
     return LayoutScaffold(
       body:
+        //If the controller (viewer) is null, displays loading indicator. If not, displays the pdf.
         viewer == null ? loadingIndicator : PdfViewPinch(controller: viewer!)
     );
   }
