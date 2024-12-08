@@ -18,48 +18,15 @@ class _CatatanMainPageContent extends State<CatatanMainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-<<<<<<< Updated upstream
         title: Text('FlexiNotes'),
         actions: [],
-=======
-<<<<<<< HEAD
-        title: const Text('FlexiNote'),
-        actions: [
-        ],
-=======
-        title: Text('FlexiNotes'),
-        actions: [],
->>>>>>> 427db07be15e6785771adca238f9c9180bffd790
->>>>>>> Stashed changes
       ),
       floatingActionButton: FloatingActionButton.large(
         onPressed: () {
           // Aksi tombol di sini
         },
-<<<<<<< Updated upstream
         child: Icon(FontAwesomeIcons.plus),
       ),
-=======
-<<<<<<< HEAD
-        child: const Icon(FontAwesomeIcons.plus), // Ikon dari FontAwesome
-      ),
-
-      body: Column(
-        children: [
-          TextField(
-            decoration: const InputDecoration(labelText: 'Search Notes.....',
-              prefixIcon: Icon(FontAwesomeIcons.magnifyingGlass),
-            ),
-          ),
-          Row(
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon:const  Icon(FontAwesomeIcons.arrowDown),
-=======
-        child: Icon(FontAwesomeIcons.plus),
-      ),
->>>>>>> Stashed changes
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
@@ -73,10 +40,6 @@ class _CatatanMainPageContent extends State<CatatanMainPage> {
                 enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide(color: primary),
                 ),
-<<<<<<< Updated upstream
-=======
->>>>>>> 427db07be15e6785771adca238f9c9180bffd790
->>>>>>> Stashed changes
               ),
             ),
             SizedBox(height: 16), // Spasi antar elemen
