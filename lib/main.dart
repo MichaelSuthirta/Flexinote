@@ -1,6 +1,7 @@
+import 'package:flexinote/constants.dart';
 import 'package:flutter/material.dart';
 import 'routing.dart';
-// import 'main_menu.dart';
+//import 'main_menu.dart';
 
 void main() {
   runApp(const Application());
@@ -12,12 +13,24 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //The title for the app, displayed when ran in Browser
       title: 'Flexinote',
-      //First display
       debugShowCheckedModeBanner: false,
-      initialRoute: '/', //The initial page is the main menu page
+      initialRoute: '/',
       routes: Routes.getRoute(),
+      theme: ThemeData(
+        fontFamily: 'Fredoka',
+        scaffoldBackgroundColor: background,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          titleTextStyle: TextStyle(
+            fontSize: 32,
+            fontFamily: 'Fredoka',
+            fontWeight: FontWeight.bold,
+            color: Colors.blueAccent,
+          ),
+        ),
+      ),
     );
   }
 }
