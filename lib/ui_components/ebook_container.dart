@@ -4,7 +4,7 @@ class EbookContainer extends StatelessWidget{
   //For display
   final String title, author, path;
   final String? src; // Source for cover
-  final ImageProvider? cover;
+  final ImageProvider? cover; //If the cover is directly from an image
 
   //For button press
   final VoidCallback? onPress;
@@ -48,8 +48,8 @@ class EbookContainer extends StatelessWidget{
                 children: [
                   //Picture
                   SizedBox(
-                    width: double.infinity,
-                    height: 170,
+                    width: double.infinity, //Image width is maximized to the box width (including padding)
+                    height: 170, //Image height
                     child: Image(
                       image: coverImage,
                       fit: BoxFit.fitWidth, //Crops the image to the box width
@@ -66,7 +66,6 @@ class EbookContainer extends StatelessWidget{
                           fontSize: 22,
                         ),
                         overflow: TextOverflow.ellipsis, //Replacing overflowing text with '...'
-                        maxLines: 1, //Text can only be in 1 line.
                     )
                   ),
                   //Author
@@ -80,7 +79,6 @@ class EbookContainer extends StatelessWidget{
                         fontSize: 18,
                       ),
                       overflow: TextOverflow.ellipsis, //Replacing overflowing text with '...'
-                      maxLines: 1, //Text can only be in 1 line.
                     )
                   ),
                 ],

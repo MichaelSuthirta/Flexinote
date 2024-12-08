@@ -5,20 +5,26 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flexinote/layout_scaffold.dart';
 import 'dart:io';
 
+/// Creates a temporary file to store the content of the actual files
+Future<String> loadTempFile(String filePath) async{
+  final data = await rootBundle.load(filePath);
+
+  //Creates a temporary file, where the path is 'temporaryDirectory/pdfName'.
+  final tempFile = File('${(await getTemporaryDirectory()).path}/${filePath.split('/').last}');
+  //Writes the pdf byteData into the file
+  await tempFile.writeAsBytes(data.buffer.asUint8List());
+
+  //Returns the path
+  return tempFile.path;
+}
+
 /// Cover fetcher
 Future<ImageProvider?> getCover(String path) async{
 
-  //Accesses the assets folder, then loads the specified file into the system byteData file
-  final fileAsByte = await rootBundle.load(path);
-
-  //getTemporaryDirectory() is a function to get the directory for temp files
-  //Creates a temporary file, where the path is 'temporaryDirectory/pdfName'.
-  final tempFile = File('${(await getTemporaryDirectory()).path}/${path.split('/').last}');
-  //Writes the pdf byteData into the file
-  await tempFile.writeAsBytes(fileAsByte.buffer.asUint8List());
+  final String tempFilePath = await loadTempFile(path);
 
   //Opens the temporary pdf file
-  final document = await PdfDocument.openFile(tempFile.path);
+  final document = await PdfDocument.openFile(tempFilePath);
 
   //Takes the first page of the file, which is the cover
   final page = await document.getPage(1);
@@ -54,18 +60,6 @@ class BookViewer extends StatefulWidget{
 class _BookViewerState extends State<BookViewer>{
   PdfControllerPinch? viewer;
 
-  Future<String> loadTempFile(String filePath) async{
-    final data = await rootBundle.load(widget.path);
-
-    //Creates a temporary file, where the path is 'temporaryDirectory/pdfName'.
-    final tempFile = File('${(await getTemporaryDirectory()).path}/${widget.path.split('/').last}');
-    //Writes the pdf byteData into the file
-    await tempFile.writeAsBytes(data.buffer.asUint8List());
-
-    //Returns the path
-    return tempFile.path;
-  }
-  //
   void setPath () async{
     String bookPath = await loadTempFile(widget.path);
     setState((){
@@ -82,9 +76,7 @@ class _BookViewerState extends State<BookViewer>{
   //
   @override
   void dispose(){
-    // if(viewer != null) {
-      viewer!.dispose();
-    // }
+    viewer!.dispose();
     super.dispose();
   }
 

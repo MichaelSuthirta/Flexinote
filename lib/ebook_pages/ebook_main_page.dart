@@ -1,5 +1,4 @@
 import 'package:flexinote/ebook_pages/ebook_scroll.dart';
-import 'package:flexinote/ui_components/scaffold_buttons.dart';
 import 'package:flexinote/ui_components/sidebar_button.dart';
 import 'package:flutter/material.dart';
 import '../layout_scaffold.dart';
@@ -29,7 +28,6 @@ class EbookMainPage extends StatelessWidget{
                     //Search bar placeholder
                     Container(
                         alignment: Alignment.center,
-
                         color: const Color.fromRGBO(190, 190, 190, 1),
                         width: 300,
                         height: 30,

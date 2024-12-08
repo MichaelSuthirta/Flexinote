@@ -13,60 +13,50 @@ class EbookScroll extends StatefulWidget{
 }
 
 class _EbookScrollContent extends State<EbookScroll>{
-  late Future<List<Ebook>> bookList; //Book list, will be filled after fetching data
-
-  @override
-  void initState(){
-    super.initState();
-    bookList = fetchEbooks();
-  }
+  late List<Ebook> bookList; //Book list, will be filled after fetching data
 
   @override
   Widget build(BuildContext context) {
-    // return Container(
-    //     padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
-    //     child: EbookContainer(
-    //       onPress: (){},
-    //       title: "The Past, Present, and The Future: How Our Experiences Shape Our Life",
-    //       author: "test",
-    //     )
-    // );
+
     return FutureBuilder<List<Ebook>>(
-        future: bookList, //The list that will be filled later
+        future: fetchEbooks(), //Fetches the list of books
         //The content that will be created
         builder: (BuildContext context, AsyncSnapshot snapshot){
           if(snapshot.hasData){
-            final eBookList = snapshot.data; //Makes a list based on the data
+            bookList = snapshot.data; //Makes a list based on the data if it isn't null
             return ListView.builder(
-              itemCount: eBookList.length,
-              itemBuilder: (context, index){
+              itemCount: bookList.length,
+              itemBuilder: (BuildContext context, int index){
                 return Padding(
                     padding: const EdgeInsets.fromLTRB(25, 12.5, 25, 12.5),
                     child: FutureBuilder<ImageProvider?>(
-                        future: getCover(eBookList[index].getPath()),
+                        future: getCover(bookList[index].getPath()), //Gets cover of each book
                         builder: (context, coverSnapshot) {
+                          //If the cover is still not acquired yet
                           if(coverSnapshot.connectionState == ConnectionState.waiting || coverSnapshot.hasError){
                             if(coverSnapshot.hasError){
-                              print("Error: {$coverSnapshot.error}");
+                              print("Error: {$coverSnapshot.error}"); //Shows error on debug log
                             }
                             return EbookContainer(
-                                title: eBookList[index].getTitle(),
-                                author: eBookList[index].getAuthor(),
-                                path: eBookList[index].getPath(),
+                                title: bookList[index].getTitle(),
+                                author: bookList[index].getAuthor(),
+                                path: bookList[index].getPath(),
+                                //The image parameter is null, therefore it'll use placeholder image
                                 onPress: () {}
                             );
                           }
+
                           return EbookContainer(
-                              title: eBookList[index].getTitle(),
-                              author: eBookList[index].getAuthor(),
-                              path: eBookList[index].getPath(),
-                              cover: coverSnapshot.data,
+                              title: bookList[index].getTitle(),
+                              author: bookList[index].getAuthor(),
+                              path: bookList[index].getPath(),
+                              cover: coverSnapshot.data, //Passes the acquired image to the argument
                               onPress: () {
-                                print(eBookList[index].getPath());
+                                print(bookList[index].getPath());
                                 Navigator.pushNamed(
                                     context,
                                     '/ebook/book-content',
-                                    arguments: eBookList[index].getPath()
+                                    arguments: bookList[index].getPath()
                                 );
                               }
                           );
@@ -76,12 +66,15 @@ class _EbookScrollContent extends State<EbookScroll>{
               },
             );
           }
+          //If the list has an error
           else if(snapshot.hasError){
             return Center(child: Text("Error - ${snapshot.error}"));
           }
+          //If the list is empty.
           else if(!snapshot.hasData || snapshot.data!.isEmpty){
             return Center(child: Text("E-book list is empty. Directory: ${Directory.current.path}"));
           }
+          //If still waiting for fetch
           else{
             return const Center(child: CircularProgressIndicator());
           }

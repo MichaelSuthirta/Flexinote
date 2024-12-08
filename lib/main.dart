@@ -1,7 +1,9 @@
 import 'package:flexinote/constants.dart';
 import 'package:flutter/material.dart';
-import 'routing.dart';
-//import 'main_menu.dart';
+import 'main_menu.dart';
+import 'package:flexinote/ebook_pages/ebook_main_page.dart';
+import 'package:flexinote/ebook_pages/ebook_viewer.dart';
+import 'package:flexinote/catatan_pages/catatan_main_page.dart';
 
 void main() {
   runApp(const Application());
@@ -15,12 +17,17 @@ class Application extends StatelessWidget {
     return MaterialApp(
       title: 'Flexinote',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: Routes.getRoute(),
+      home: const MainMenuHolder(),
+      routes: <String, WidgetBuilder>{
+        '/ebook/main': (BuildContext context) => const EbookMainPage(),
+        '/ebook/book-content': (BuildContext context) => BookViewer(path:
+        ModalRoute.of(context)!.settings.arguments as String), //Passes the argument
+        '/catatan/main': (BuildContext context) => const CatatanMainPage(),
+      },
       theme: ThemeData(
         fontFamily: 'Fredoka',
         scaffoldBackgroundColor: background,
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           backgroundColor: Colors.transparent,
           elevation: 0,
           titleTextStyle: TextStyle(

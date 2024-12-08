@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 
 class HomeButton extends StatelessWidget{
   final Color color;
-  final Widget icon; //Image must be within a widget, therefore Widget is used
+  final Icon icon = const Icon(
+    Icons.home,
+    color: Colors.white,
+    size: 80,
+  ); //Image must be within a widget, therefore Widget is used
   final VoidCallback? onPress;
 
   const HomeButton({super.key, 
                     this.onPress, 
-                    this.color = const Color.fromRGBO(109, 103, 228, 1), 
-                    this.icon = const Image(image: AssetImage('lib/ui_components/icons/home_icon.png')),
+                    this.color = const Color.fromRGBO(109, 103, 228, 1),
                     });
 
   @override
@@ -35,7 +38,7 @@ class HomeButton extends StatelessWidget{
 }
 
 class ProfileButton extends StatelessWidget{
-  final Widget icon;
+  final Image icon;
   final VoidCallback? onPress;
 
   const ProfileButton({
