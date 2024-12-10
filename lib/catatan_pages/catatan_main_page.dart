@@ -1,5 +1,5 @@
 import 'package:flexinote/catatan_pages/new_or_edit_note_pages.dart';
-import 'package:flexinote/catatan_pages/search_field.dart';
+import 'package:flexinote/ui_components/search_field.dart';
 import 'package:flutter/material.dart';
 // import '../constants.dart';
 // import '../layout_scaffold.dart';
@@ -29,7 +29,7 @@ class _CatatanMainPageContent extends State<CatatanMainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('FlexiNotes'),
+        title: Text('FlexiNote'),
         actions: [],
       ),
       floatingActionButton: NoteFab(

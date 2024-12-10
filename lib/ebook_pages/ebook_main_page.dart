@@ -1,5 +1,6 @@
 import 'package:flexinote/ebook_pages/ebook_scroll.dart';
 import 'package:flexinote/ui_components/sidebar_button.dart';
+import 'package:flexinote/ui_components/search_field.dart';
 import 'package:flutter/material.dart';
 import '../layout_scaffold.dart';
 
@@ -24,6 +25,8 @@ class EbookMainPage extends StatelessWidget{
                         onPress: (){},
                       ),
                     ),
+
+                    // const SearchField()
 
                     //Search bar placeholder
                     Container(
