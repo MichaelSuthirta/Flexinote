@@ -1,6 +1,15 @@
+import 'package:flexinote/catatan_pages/new_or_edit_note_pages.dart';
+import 'package:flexinote/catatan_pages/search_field.dart';
 import 'package:flutter/material.dart';
-import '../layout_scaffold.dart';
+// import '../constants.dart';
+// import '../layout_scaffold.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'note_card.dart';
+import 'note_fab.dart';
+import 'note_grid.dart';
+// import 'note_icon_button_outlined.dart';
+import 'note_icon_button.dart';
+import 'note_list.dart';
 const Color primary = Color(0xFF6200EE);
 
 class CatatanMainPage extends StatefulWidget {
@@ -13,6 +22,8 @@ class CatatanMainPage extends StatefulWidget {
 class _CatatanMainPageContent extends State<CatatanMainPage> {
   final List<String> dropdownOptions = ['Date modified', 'Date Created'];
   late String dropdownValue = dropdownOptions.first;
+  bool isDescending = true;
+  bool isGrid = true;
 
   @override
   Widget build(BuildContext context) {
@@ -21,60 +32,38 @@ class _CatatanMainPageContent extends State<CatatanMainPage> {
         title: Text('FlexiNotes'),
         actions: [],
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: NoteFab(
         onPressed: () {
-          // Aksi tombol di sini
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => NewOrEditNotePages(),
+            ),
+          );
         },
-        child: Icon(FontAwesomeIcons.plus),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
-            TextField(
-              decoration: InputDecoration(
-                  hintText: 'Search Notes.....',
-                  hintStyle: TextStyle(fontSize: 12),
-                  prefixIcon: Icon(FontAwesomeIcons.magnifyingGlass),
-                  fillColor: Colors.white,
-                  filled: true,
-                  isDense: true,
-                  contentPadding: EdgeInsets.zero,
-                  prefixIconConstraints: BoxConstraints(
-                    minWidth: 42,
-                    minHeight: 42,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(
-                      color: primary,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(
-                        color: primary,
-                      )
-                  )
-              ),
-            ),
+            SearchField(),
             SizedBox(height: 16), // Spasi antar elemen
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Row(
                 children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(FontAwesomeIcons.arrowDown),
-                    padding: EdgeInsets.zero,
-                    visualDensity: VisualDensity.compact,
-                    constraints: BoxConstraints(),
-                    style: IconButton.styleFrom(tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
-                    iconSize: 18,
-                    color: Color(0xFF616161),
+                  NoteIconButton(
+                    icon: isDescending
+                        ? FontAwesomeIcons.arrowDown
+                        : FontAwesomeIcons.arrowUp,
+                    size: 18,
+                    onPressed: () {
+                      setState(() {
+                        isDescending = !isDescending; // Ubah nilai isDescending
+                      });
+                    },
                   ),
-                  SizedBox(width: 16),
+                  SizedBox(width: 16), // Spasi antar elemen
                   DropdownButton<String>(
                     value: dropdownValue,
                     icon: Padding(
@@ -87,7 +76,7 @@ class _CatatanMainPageContent extends State<CatatanMainPage> {
                     ),
                     underline: SizedBox.shrink(),
                     borderRadius: BorderRadius.circular(16),
-                    isDense: true ,
+                    isDense: true,
                     items: dropdownOptions
                         .map(
                           (e) => DropdownMenuItem(
@@ -95,7 +84,7 @@ class _CatatanMainPageContent extends State<CatatanMainPage> {
                         child: Row(
                           children: [
                             Text(e),
-                            if(e == dropdownValue ) ...[
+                            if (e == dropdownValue) ...[
                               SizedBox(width: 8),
                               Icon(Icons.check),
                             ],
@@ -104,7 +93,7 @@ class _CatatanMainPageContent extends State<CatatanMainPage> {
                       ),
                     )
                         .toList(),
-                    selectedItemBuilder:(context) =>
+                    selectedItemBuilder: (context) =>
                         dropdownOptions.map((e) => Text(e)).toList(),
                     onChanged: (newValue) {
                       setState(() {
@@ -112,100 +101,24 @@ class _CatatanMainPageContent extends State<CatatanMainPage> {
                       });
                     },
                   ),
-                  Spacer(),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(FontAwesomeIcons.bars),
+                  const Spacer(),
+                  NoteIconButton(
+                    icon: isDescending
+                        ? FontAwesomeIcons.tableCellsLarge
+                        : FontAwesomeIcons.bars,
+                    size: 18,
+                    onPressed: () {
+                      setState(() {
+                        isGrid = !isGrid; // Ubah nilai isDescending
+                      });
+                    },
                   ),
                 ],
               ),
             ),
             SizedBox(height: 16), // Spasi antar elemen
             Expanded(
-              child: GridView.builder(
-                itemCount: 15,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 4,
-                  mainAxisSpacing: 4,
-                ),
-                itemBuilder: (context, int index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        border : Border.all(color: Color(0xFF6200EE),width: 2),
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: primary.withOpacity(0.5),
-                            offset: Offset(4,4),
-                          )
-                        ]
-                    ),
-                    padding: EdgeInsets.all(12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Object Oriented Programming',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              color: Color(0xFF00008B)
-                          ),
-                        ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: List.generate(3, (index) => Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                color: Color(0xFFADD8E6),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 2,
-                              ),
-                              margin: EdgeInsets.only(right: 4),
-                              child: Text(
-                                'OOPsesi11',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                            ),
-                          ),
-                        ),
-                        Expanded(child: Text('Multithreading programming',
-                          style :TextStyle(color: Colors.black),
-                        ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              '07 Dec, 2024',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight : FontWeight.w600,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Icon(
-                              FontAwesomeIcons.trash,
-                              color: Colors.grey,
-                              size: 20,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
+              child: isGrid ? NotesGrid() : NotesList(),
             ),
           ],
         ),
@@ -213,4 +126,3 @@ class _CatatanMainPageContent extends State<CatatanMainPage> {
     );
   }
 }
-
