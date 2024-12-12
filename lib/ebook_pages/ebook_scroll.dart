@@ -33,10 +33,25 @@ class _EbookScrollContent extends State<EbookScroll>{
                         future: getCover(bookList[index].getPath()), //Gets cover of each book
                         builder: (context, coverSnapshot) {
                           //If the cover is still not acquired yet
-                          if(coverSnapshot.connectionState == ConnectionState.waiting || coverSnapshot.hasError){
-                            if(coverSnapshot.hasError){
-                              print("Error: {$coverSnapshot.error}"); //Shows error on debug log
-                            }
+                          if(coverSnapshot.connectionState == ConnectionState.waiting){
+                            return EbookContainer(
+                                title: bookList[index].getTitle(),
+                                author: bookList[index].getAuthor(),
+                                path: bookList[index].getPath(),
+                                //The image parameter is null, therefore it'll use placeholder image
+                                onPress: () {
+                                  print(bookList[index].getPath());
+                                  Navigator.pushNamed(
+                                      context,
+                                      '/ebook/book-content',
+                                      arguments: bookList[index].getPath()
+                                  );
+                                }
+                            );
+                          }
+                          //If error happens
+                          if(coverSnapshot.hasError){
+                            print("Error: {$coverSnapshot.error}"); //Shows error on debug log
                             return EbookContainer(
                                 title: bookList[index].getTitle(),
                                 author: bookList[index].getAuthor(),
@@ -45,7 +60,7 @@ class _EbookScrollContent extends State<EbookScroll>{
                                 onPress: () {}
                             );
                           }
-
+                          //If there's no error and cover successfully fetched
                           return EbookContainer(
                               title: bookList[index].getTitle(),
                               author: bookList[index].getAuthor(),

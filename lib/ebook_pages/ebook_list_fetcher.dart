@@ -7,6 +7,7 @@ Future<List<Ebook>> fetchEbooks() async{
   final dataContent = await rootBundle.loadString('AssetManifest.json'); //Auto-generated json file
   final Map<String, dynamic> dataMap = json.decode(dataContent);
 
+  //Lists the paths
   final bookPaths = dataMap.keys.where(
       (name) => name.startsWith('assets/ebook_collection/') && name.endsWith('.pdf')
   ).toList();

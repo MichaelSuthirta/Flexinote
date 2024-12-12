@@ -7,12 +7,12 @@ import 'note_icon_button.dart';
 import 'note_icon_button_outlined.dart';
 
 class NewOrEditNotePages extends StatefulWidget {
+  final bool isNewNote;
+
   const NewOrEditNotePages({
     required this.isNewNote,
     super.key,
   });
-
-  final bool isNewNote;
 
   @override
   State<NewOrEditNotePages> createState() => _NewOrEditNotePagesState();
@@ -101,12 +101,12 @@ class _NewOrEditNotePagesState extends State<NewOrEditNotePages> {
             ),
             if (!widget.isNewNote)
               ...[
-                const Row(
+                Row(
                   children: [
                     Expanded(
                       flex: 3,
                       child: Text(
-                        'Last Modified',
+                        'Last Modified ',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: gray500,
@@ -116,7 +116,7 @@ class _NewOrEditNotePagesState extends State<NewOrEditNotePages> {
                     Expanded(
                       flex: 5,
                       child: Text(
-                        '07 December 2023, 03:35 PM',
+                        "${DateTime.now()}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: gray500,
@@ -201,10 +201,11 @@ class _NewOrEditNotePagesState extends State<NewOrEditNotePages> {
                 thickness: 2,
               ),
             ),
+            //Note content
             TextField(
               focusNode: focusNode,
               decoration: const InputDecoration(
-                hintText: 'Note here......',
+                hintText: 'Your note here......',
                 border: OutlineInputBorder(),
               ),
               readOnly: readOnly,
