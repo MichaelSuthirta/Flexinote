@@ -3,8 +3,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 const Color primary = Color(0xFF6200EE);
 
 class NoteCard extends StatelessWidget {
+  final String? title;
   const NoteCard({
     required this.isInGrid,
+    this.title,
     super.key,
   });
 
@@ -12,6 +14,10 @@ class NoteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    //If title is null, the title is "Untitled"
+    String noteTitle = title ?? "Untitled";
+
     return Container(
       decoration: BoxDecoration(
           color: Colors.white,
@@ -29,7 +35,7 @@ class NoteCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Object Oriented Programming',
+            noteTitle,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(fontWeight: FontWeight.bold,

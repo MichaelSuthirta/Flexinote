@@ -15,7 +15,9 @@ class _NotesListState extends State<NotesList> {
       clipBehavior: Clip.none,
       itemCount: 3,
       itemBuilder: (context, index) {
-        return NoteCard(isInGrid: false,
+        return NoteCard(
+          isInGrid: false,
+          title: "OOP Sesi 11"
         );
       },
       separatorBuilder: (context, index) => SizedBox(height: 8),
