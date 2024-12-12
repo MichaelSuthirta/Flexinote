@@ -24,7 +24,7 @@ class EbookContainer extends StatelessWidget{
 
     //Create a string for image source. If src is null, uses default image.
     // ?? = if null
-    String coverSource = src ?? "lib/ui_components/images/image_placeholder.png";
+    String coverSource = src ?? "assets/images/image_placeholder.png";
     //If cover image is null, uses the String path.
     ImageProvider coverImage = cover ?? AssetImage(coverSource);
 

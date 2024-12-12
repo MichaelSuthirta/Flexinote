@@ -69,8 +69,8 @@ flutter:
 
   assets:
     - lib/ui_components/icons/
-    - lib/ui_components/images/
     - assets/ebook_collection/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

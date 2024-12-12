@@ -3,6 +3,7 @@ import 'package:flexinote/catatan_pages/new_or_edit_note_pages.dart';
 import 'package:flexinote/change_notifier/new_note_controller.dart';
 import 'package:flexinote/change_notifier/note_provider.dart';
 import 'package:flexinote/models/note.dart';
+import 'package:flexinote/layout_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -28,12 +29,9 @@ class _CatatanMainPageContent extends State<CatatanMainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('FlexiNotes'),
-        actions: [],
-      ),
-      floatingActionButton: NoteFab(
+    return LayoutScaffold(
+      title: "Notes",
+      button: NoteFab(
         onPressed: () {
           Navigator.push(
             context,
@@ -55,15 +53,17 @@ class _CatatanMainPageContent extends State<CatatanMainPage> {
               ? Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
+
             children: [
-              Image.asset(
-                'assets/images/empty_notes.png', // Tambahkan nama file gambar yang sesuai
-                width: MediaQuery.sizeOf(context).width * 0.75,
+              Center(
+                  child: Image.asset('assets/images/image_placeholder.png', // Tambahkan nama file gambar yang sesuai
+                  width: MediaQuery.sizeOf(context).width * 0.75,
+                )
               ),
               const Text(
-                'Your note still empty! Go write some! For assignment and anything!\nPress the plus button below to create your new notes =w=',
+                '\nNo notes found. Create one by pressing the plus button.',
                 textAlign: TextAlign.center,
-              ),
+              )
             ],
           )
               : Padding(

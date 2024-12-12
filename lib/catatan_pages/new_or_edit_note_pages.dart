@@ -21,7 +21,7 @@ class NewOrEditNotePages extends StatefulWidget {
 class _NewOrEditNotePagesState extends State<NewOrEditNotePages> {
   late final NewNoteController newNoteController;
   late final FocusNode focusNode;
-  late bool readOnly;
+  late bool readOnly = false;
 
   @override
   void initState() {

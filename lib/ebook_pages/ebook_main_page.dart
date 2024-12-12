@@ -10,46 +10,47 @@ class EbookMainPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return LayoutScaffold(
-        body: Column(
-            children: [
-              //Top area
-              //Sidebar button and search box
-              Row(
-                  children:[
-                    //Sidebar button
-                    Container(
-                      width: 105,
-                      height: 100,
-                      padding: const EdgeInsets.all(20), //Distance from edges
-                      child: SidebarButton(
-                        onPress: (){},
-                      ),
+      title: "e-Books",
+      body: Column(
+          children: [
+            //Top area
+            //Sidebar button and search box
+            Row(
+                children:[
+                  //Sidebar button
+                  Container(
+                    width: 105,
+                    height: 100,
+                    padding: const EdgeInsets.all(20), //Distance from edges
+                    child: SidebarButton(
+                      onPress: (){},
                     ),
+                  ),
 
-                    // const SearchField()
+                  // const SearchField()
 
-                    //Search bar placeholder
-                    Container(
-                        alignment: Alignment.center,
-                        color: const Color.fromRGBO(190, 190, 190, 1),
-                        width: 300,
-                        height: 30,
-                        child: const Text(
-                            "Search",
-                            style: TextStyle(
-                                fontSize: 18
-                            )
-                        )
-                    ),
-                  ]
-              ),
+                  //Search bar placeholder
+                  Container(
+                      alignment: Alignment.center,
+                      color: const Color.fromRGBO(190, 190, 190, 1),
+                      width: 300,
+                      height: 30,
+                      child: const Text(
+                          "Search",
+                          style: TextStyle(
+                              fontSize: 18
+                          )
+                      )
+                  ),
+                ]
+            ),
 
-              //Content
-              const Expanded (
-                  child: EbookScroll()
-              ),
-            ]
-        )
+            //Content
+            const Expanded (
+                child: EbookScroll()
+            ),
+          ]
+      )
     );
   }
 }
