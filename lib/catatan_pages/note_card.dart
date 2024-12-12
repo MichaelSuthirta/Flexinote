@@ -1,3 +1,5 @@
+import 'package:flexinote/catatan_pages/new_or_edit_note_pages.dart';
+import 'package:flexinote/models/note.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 const Color primary = Color(0xFF6200EE);
@@ -5,11 +7,12 @@ const Color primary = Color(0xFF6200EE);
 class NoteCard extends StatelessWidget {
   final String? title;
   const NoteCard({
+    required this.note,
     required this.isInGrid,
     this.title,
     super.key,
   });
-
+ final Note note;
   final bool isInGrid;
 
   @override
@@ -18,18 +21,29 @@ class NoteCard extends StatelessWidget {
     //If title is null, the title is "Untitled"
     String noteTitle = title ?? "Untitled";
 
-    return Container(
+    return GestureDetector(
+        onTap : () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const NewOrEditNotePages(
+            isNewNote: false, // Perbaiki ini
+          ),
+        ),
+      );
+    },
+    child: Container(
       decoration: BoxDecoration(
           color: Colors.white,
           border : Border.all(color: Color(0xFF6200EE),width: 2),
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
-              color: primary.withOpacity(0.5),
-              offset: Offset(4,4),
-            )
-          ]
-      ),
+               color: primary.withOpacity(0.5),
+               offset: Offset(4,4),
+             )
+            ]
+          ),
       padding: EdgeInsets.all(12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,6 +117,7 @@ class NoteCard extends StatelessWidget {
           ),
         ],
       ),
+     ),
     );
   }
 }

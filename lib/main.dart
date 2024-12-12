@@ -1,9 +1,12 @@
 import 'package:flexinote/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'main_menu.dart';
 import 'package:flexinote/ebook_pages/ebook_main_page.dart';
 import 'package:flexinote/ebook_pages/ebook_viewer.dart';
 import 'package:flexinote/catatan_pages/catatan_main_page.dart';
+import 'package:flexinote/change_notifier/note_provider.dart';
 
 void main() {
   runApp(const Application());
@@ -14,27 +17,34 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flexinote',
-      debugShowCheckedModeBanner: false,
-      home: const MainMenuHolder(),
-      routes: <String, WidgetBuilder>{
-        '/ebook/main': (BuildContext context) => const EbookMainPage(),
-        '/ebook/book-content': (BuildContext context) => BookViewer(path:
-    ModalRoute.of(context)!.settings.arguments as String), //Passes the argument
-        '/catatan/main': (BuildContext context) => const CatatanMainPage(),
-      },
-      theme: ThemeData(
-        fontFamily: 'Fredoka',
-        scaffoldBackgroundColor: background,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          titleTextStyle: TextStyle(
-            fontSize: 32,
-            fontFamily: 'Fredoka',
-            fontWeight: FontWeight.bold,
-            color: Colors.blueAccent,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => NotesProvider()), // Provider untuk Catatan Pages
+      ],
+      child: MaterialApp(
+        title: 'Flexinote',
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        routes: {
+          '/': (BuildContext context) => const MainMenuHolder(),
+          '/ebook/main': (BuildContext context) => const EbookMainPage(),
+          '/ebook/book-content': (BuildContext context) => BookViewer(
+            path: ModalRoute.of(context)!.settings.arguments as String,
+          ),
+          '/catatan/main': (BuildContext context) => const CatatanMainPage(),
+        },
+        theme: ThemeData(
+          fontFamily: 'Fredoka',
+          scaffoldBackgroundColor: background, // Pastikan "background" didefinisikan di constants.dart
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            titleTextStyle: TextStyle(
+              fontSize: 32,
+              fontFamily: 'Fredoka',
+              fontWeight: FontWeight.bold,
+              color: Colors.blueAccent,
+            ),
           ),
         ),
       ),
@@ -42,7 +52,9 @@ class Application extends StatelessWidget {
   }
 }
 
-    //
+
+
+//
     // return Scaffold(
     //   appBar: AppBar(
     //     title: const Text("FlexiNote"),

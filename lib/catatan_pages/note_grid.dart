@@ -1,15 +1,19 @@
+import 'package:flexinote/models/note.dart';
 import 'package:flutter/material.dart';
 import 'note_card.dart';
 
 class NotesGrid extends StatelessWidget {
   const NotesGrid({
+    required this.notes,
     super.key,
   });
+
+  final List<Note> notes;
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: 3,
+      itemCount: notes.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 4,
@@ -17,8 +21,8 @@ class NotesGrid extends StatelessWidget {
       ),
       itemBuilder: (context, int index) {
         return NoteCard(
+          note: notes[index],
           isInGrid: true,
-          title: "OOP Sesi 11"
         );
       },
     );
