@@ -13,7 +13,7 @@ class _NotesListState extends State<NotesList> {
   Widget build(BuildContext context) {
     return ListView.separated(
       clipBehavior: Clip.none,
-      itemCount: 15,
+      itemCount: 3,
       itemBuilder: (context, index) {
         return NoteCard(isInGrid: false,
         );

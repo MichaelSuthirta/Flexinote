@@ -52,6 +52,7 @@ class _CatatanMainPageContent extends State<CatatanMainPage> {
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Row(
                 children: [
+                  //Arrow button (Ascending or descending)
                   NoteIconButton(
                     icon: isDescending
                         ? FontAwesomeIcons.arrowDown
@@ -77,8 +78,7 @@ class _CatatanMainPageContent extends State<CatatanMainPage> {
                     underline: SizedBox.shrink(),
                     borderRadius: BorderRadius.circular(16),
                     isDense: true,
-                    items: dropdownOptions
-                        .map(
+                    items: dropdownOptions.map(
                           (e) => DropdownMenuItem(
                         value: e,
                         child: Row(
@@ -91,8 +91,7 @@ class _CatatanMainPageContent extends State<CatatanMainPage> {
                           ],
                         ),
                       ),
-                    )
-                        .toList(),
+                    ).toList(),
                     selectedItemBuilder: (context) =>
                         dropdownOptions.map((e) => Text(e)).toList(),
                     onChanged: (newValue) {

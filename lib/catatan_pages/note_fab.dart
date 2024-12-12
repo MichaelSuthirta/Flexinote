@@ -22,6 +22,8 @@ class NoteFab extends StatelessWidget {
           ),
         ],
       ),
+
+      //Add Notes button
       child: FloatingActionButton(
         onPressed:onPressed,
         child: Icon(FontAwesomeIcons.plus),

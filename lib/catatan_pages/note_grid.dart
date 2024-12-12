@@ -16,7 +16,7 @@ class NotesGrid extends StatelessWidget {
         mainAxisSpacing: 4,
       ),
       itemBuilder: (context, int index) {
-        return NoteCard(isInGrid: true, );
+        return NoteCard(isInGrid: true,);
       },
     );
   }
