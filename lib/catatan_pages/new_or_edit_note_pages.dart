@@ -103,7 +103,7 @@ class _NewOrEditNotePagesState extends State<NewOrEditNotePages> {
               ...[
                 Row(
                   children: [
-                    Expanded(
+                    const Expanded(
                       flex: 3,
                       child: Text(
                         'Last Modified ',
@@ -117,7 +117,7 @@ class _NewOrEditNotePagesState extends State<NewOrEditNotePages> {
                       flex: 5,
                       child: Text(
                         "${DateTime.now()}",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: gray500,
                         ),
@@ -125,7 +125,7 @@ class _NewOrEditNotePagesState extends State<NewOrEditNotePages> {
                     ),
                   ],
                 ),
-                Row(
+                const Row(
                   children: [
                     Expanded(
                       flex: 3,
@@ -155,7 +155,7 @@ class _NewOrEditNotePagesState extends State<NewOrEditNotePages> {
                       flex: 5,
                       child: Row(
                         children: [
-                          Text(
+                          const Text(
                             'Tags',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -194,8 +194,8 @@ class _NewOrEditNotePagesState extends State<NewOrEditNotePages> {
                   ],
                 ),
               ],
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 8.0),
               child: Divider(
                 color: gray700,
                 thickness: 2,
